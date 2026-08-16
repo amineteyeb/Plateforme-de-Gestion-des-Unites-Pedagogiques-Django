@@ -1,0 +1,270 @@
+{% extends "employee_register/index.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  h6{
+    font-size:0.7vw;
+    color: rgb(232, 17, 1);
+    text-align: center;
+    margin-top: 5px;
+    letter-spacing: 0px;
+    
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 34px;
+  border-color: black;
+  outline: 5px dotted green;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-color: black;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 10px;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-color: black;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #00c92f;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+</style>
+<div class="w3-container w3-red">
+    <center>  <h1>  Enseignants</h1> </center>
+    <br></br>
+    <center>  <div class="search-box">
+        <form class="input">
+            <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="q" name="q" />
+            <label class="input__label" for="q">
+                <svg class="graphic" width="100%" height="100%" viewBox="0 0 404 77" preserveAspectRatio="none">
+                    <path d="m0,0l404,0l0,77l-404,0l0,-77z"/>
+                </svg>
+            </label>
+        </form>
+    </div><!--//end-search-box--><a id="search-clear" href="http://localhost:8000/employee/list" class="fa fa-times" aria-hidden="true" style="position:relative;right:-10px;top:-15px;color:brown;"></a></center>
+<div class="table-responsive bs-example widget-shadow">  
+    <a href="{% url 'employee_insert' %}" class="btn btn-outline-success">
+        <i class="fa fa-plus"></i> Ajouter Enseignant
+    </a>
+    
+<table class="table table-bordered">
+    <thead class="border-bottom font-weight-bold">
+        
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile</td>
+            <td>Competences</td>
+            <td>Modules Affectés/Classes</td>
+            <td>Charge Horaire</td>
+            <td>Disponibilité</td>
+
+            <td>Actions</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employee_list %}
+            <tr>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.mobile}}</td>
+                <td> {% for personskill in employee.personskill_set.all %}
+                  <li>  {{ personskill.skill }} </li>  
+                    
+                {% endfor %}</td>
+                <td> {% for personmodule in employee.affectation_set.all %}
+                    {%if personmodule.active == True %}
+                  <li>   {{ personmodule.Module.name }} =>{{ personmodule.classe.niveau }}{{ personmodule.classe.option }}{{ personmodule.classe.name }}</li>
+                  {%endif%}
+                 {% endfor %}</td>
+                 
+                 <td>{{employee.charge_actuelle}}</td>
+                 <td> <center><label class="switch">
+                    <input type="checkbox" id="{{employee.id}}"{% if employee.is_dispo or employee.year_indispo.id != request.session.year %} checked{% endif %}>
+                    <span class="slider round"></span>
+                  </label></center> {%if employee.is_dispo == 0 and employee.year_indispo.id == request.session.year%} <h6 id="h6">Indisponible : {{employee.periode_indispo}} période   {{employee.get_periode_display}} ({{employee.dispo_desc}})</h6>{%endif%}</td>
+                <td>
+                    <a href="{% url 'employee_update' employee.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-edit fa-lg"></i>
+                    </a>
+                    <a href="{% url 'employee_delete' employee.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-trash text-danger fa-lg"></i>
+                    </a>
+                   
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="inline-form widget-shadow" id="p">
+  <div class="form-title">
+    <h4>Raison et Date :</h4>
+  </div>
+  <div class="form-body">
+    <div data-example-id="simple-form-inline"> 
+      
+        <div class="form-group"> <h3>Raison :</h3> <br>
+           <input type="text" class="form-control" id="raison" placeholder="Raison" name="raison" style ="width:400px;height:50px;padding-left: 25px;"> 
+          </div>
+          <div class="form-group">
+          <select id="org" name="org_list" class="form-control" style ="width:400px;height:50px;padding-left: 25px;">
+            <option  value="{{None}}" selected="selected">Durée de l'absence</option>
+            {% for org in periode %}
+
+            
+            
+            <option value="{{org.id}}"
+            {% if org == current_org %}selected="selected"{% endif %}>
+                {{org|capfirst}} 
+            </option>
+            
+           
+                                              
+
+
+
+            {% endfor %}
+        </select></center>
+        <select id="org2" name="org_list" class="form-control" style ="width:400px;height:50px;padding-left: 25px;">
+          <option  value="{{None}}" selected="selected">Periode du semestre</option>
+         
+
+          
+          
+          <option value="1"
+        selected="selected">
+             Periode 1 
+          </option>
+          
+          <option value="2"
+        selected="selected">
+             Periode 2
+          </option>
+          
+                                            
+
+
+
+         
+      </select> </div>
+            <center>   <button type="submit" class="btn btn-default" id="save"style="width:150px;letter-spacing: 2px;">Enregistrer</button></center>
+               
+              </div>
+  </div>
+</div>
+</div>
+</div>
+<script> 
+  
+   
+    $( document ).ready(function() {
+    
+      $('#q').on('click', function(e){
+        var nick_name = $(q).val();
+        if (nick_name != "") {
+            
+      
+     
+   
+
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url:'/module/list',
+            data: {"q": nick_name},
+            success: function(response){
+                $("#q").attr("placeholder",nick_name);
+                
+                window.location.replace("http://localhost:8000/employee/list?q="+nick_name+"")
+                
+                
+
+                
+            }
+        })
+    } }) 
+    });
+    </script>
+    <script >
+    $(document).ready(function(){
+      $('#p').hide();
+      $(function() {
+      $(":checkbox").change(function(){
+        a=this.id
+        if (this.checked==true){
+         
+
+          check= 1
+          $.post("{% url 'employe_dispo' %}", { id: a ,csrfmiddlewaretoken: '{{ csrf_token }}'},);
+          alert('Disponible');
+          $('#p').hide();
+          $('#h6').hide();
+          
+        }
+        else{
+          check= 0
+alert("Veuillez compléter le formulaire ci-dessous");
+$('#p').show();
+$("#save").click(function() {
+
+  
+$.post("{% url 'employe_update' %}", { id: a, checked:check,dispo_desc:$("#raison").val(), periode:$("#org").val(),p:$("#org2").val(),csrfmiddlewaretoken: '{{ csrf_token }}'},);
+$('#p').hide();
+location.replace("{% url 'employee_list'%}")
+});
+        }
+        
+      });    
+    });
+  });
+  </script>
+{% endblock content %}

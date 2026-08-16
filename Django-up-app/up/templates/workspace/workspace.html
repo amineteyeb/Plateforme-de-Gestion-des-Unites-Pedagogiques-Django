@@ -1,0 +1,306 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<script>
+ 
+</script>
+<style>
+ 
+    h3{
+        font-size:2.47vw;
+    color: rgb(142, 127, 126);
+    text-align: center;
+    padding: 1.5vw 1vw 2vw;
+    letter-spacing: 0px;
+    }
+
+.try{position: relative;
+  display: flex;
+  width: 200px;
+  height: 30px;
+  border-radius: .25em;
+  overflow: hidden;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  margin-left: 98em;
+  text-align-last:center;
+
+    }
+select {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 30px;
+  border-radius: .25em;
+  overflow: hidden;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align-last:center;
+}
+/* Arrow */
+select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+  text-align-last:center;
+}
+/* Transition */
+select:hover::after {
+  color: #f39c12;
+}
+/** Custom Select **/
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+  .custom-select-wrapper select {
+    display: none;
+  }
+  .custom-select {
+    position: relative;
+    display: inline-block;
+  }
+    .custom-select-trigger {
+      position: relative;
+      display: block;
+      width: 130px;
+      padding: 0 84px 0 22px;
+      font-size: 22px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 60px;
+      background: #5c9cd8;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+      .custom-select-trigger:after {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 10px; height: 10px;
+        top: 50%; right: 25px;
+        margin-top: -3px;
+        border-bottom: 1px solid #fff;
+        border-right: 1px solid #fff;
+        transform: rotate(45deg) translateY(-50%);
+        transition: all .4s ease-in-out;
+        transform-origin: 50% 0;
+      }
+      .custom-select.opened .custom-select-trigger:after {
+        margin-top: 3px;
+        transform: rotate(-135deg) translateY(-50%);
+      }
+  .custom-options {
+    position: absolute;
+    display: block;
+    top: 100%; left: 0; right: 0;
+    min-width: 100%;
+    margin: 15px 0;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 1px rgba(0,0,0,.07);
+    background: #fff;
+    transition: all .4s ease-in-out;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+  }
+  .custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+    .custom-options:before {
+      position: absolute;
+      display: block;
+      content: '';
+      bottom: 100%; right: 25px;
+      width: 7px; height: 7px;
+      margin-bottom: -4px;
+      border-top: 1px solid #b5b5b5;
+      border-left: 1px solid #b5b5b5;
+      background: #fff;
+      transform: rotate(45deg);
+      transition: all .4s ease-in-out;
+    }
+    .option-hover:before {
+      background: #f9f9f9;
+    }
+    .custom-option {
+      position: relative;
+      display: block;
+      padding: 0 22px;
+      border-bottom: 1px solid #b5b5b5;
+      font-size: 18px;
+      font-weight: 600;
+      color: #b5b5b5;
+      line-height: 47px;
+      cursor: pointer;
+      transition: all .4s ease-in-out;
+    }
+    .custom-option:first-of-type {
+      border-radius: 4px 4px 0 0;
+    }
+    .custom-option:last-of-type {
+      border-bottom: 0;
+      border-radius: 0 0 4px 4px;
+    }
+    .custom-option:hover,
+    .custom-option.selection {
+      background: #f9f9f9;
+    }
+  .center {
+  position: relative;
+  display: inline-block;
+  top: 70px; left:93%; bottom: 0px;
+  transform: translate(-50%, -50%);
+}
+
+</style>
+
+   
+<div class="w3-container w3-red">
+    <center>  <h1>  Affectations</h1> </center>
+  
+   
+        
+    
+<div class="table-responsive bs-example widget-shadow">  
+    <a href="{% url 'classe_insert' %}" class="btn btn-outline-success">
+        <i class="fa fa-plus"></i> Ajouter Classe</a>
+<table class="table table-hover">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            
+            
+            <td>Module</td>
+            <td>Duree</td>
+            <td>Competence requise</td>
+            <td>Charge Horaire</td>
+            <td>Classe</td>
+            <td>Nom Enseignant</td>
+            
+                <td>
+                   
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for w in workspace %}
+            <tr>
+                <td>{{w.Module.name}}</td>
+                
+                <td>{{w.Module.semestre}} période : {{w.Module.get_periode_display}}
+                
+                    {%if w.Module.periode == '1' %}
+
+                   <li>de {{w.Module.semestre.date_debut|date:'d/m'}} jusqu'a {{w.Module.semestre.date_inter|date:'d/m'}}</li>
+                      
+                   {%else%}
+                   {%if w.Module.periode == '2' %}
+                   <li>de {{w.Module.semestre.date_inter|date:'d/m'}} jusqu'a {{w.Module.semestre.date_fin|date:'d/m'}}</li>
+                   {%else%}
+                   {%if w.Module.periode == '3' %}
+                   <li>de {{w.Module.semestre.date_debut|date:'d/m'}} jusqu'a {{w.Module.semestre.date_fin|date:'d/m'}}</li>
+                   {%endif%}
+                   {%endif%}
+                   {%endif%}
+                   
+               </td>
+               <td>{{w.Module.skillmodule}}</td>
+                <td>{{w.Module.charge}} Heures</td>
+                <td>{{w.classe.niveau.name}}{{w.classe.option.name}}{{w.classe.name}}</td>
+                <td>{{w.person.fullname}}</td>
+                <td> 
+                    {% if w.person == Null %}
+                    <li>Choisir Enseignant</li>
+                    
+<form action="{% url 'workspace' w.id  %}"  method="post" class="d-inline">{% csrf_token %}
+    <center>        <select id="org" name="org_list" class="select">
+                            <option  value="{{None}}" selected="selected">-----------SELECT-------------</option>
+                            {% for org in skill %}
+
+                            {% if org.skill == w.Module.skillmodule %}
+                            {% if w.Module.charge|add:org.person.charge_actuelle < org.person.charge_maximale %}
+                            {% if  org.person.periode != w.Module.periode or org.person.periode_indispo != w.Module.semestre and w.annee_univ != org.person.year_indispo  %}
+                            
+                            
+                            <option value="{{org.id}}"
+                            {% if org == current_org %}selected="selected"{% endif %}>
+                                {{org.person.fullname|capfirst}} {{org.person.charge_maximale|subtract:org.person.charge_actuelle}} H
+                            </option>
+                            
+                           
+                         
+                            {% endif %}                                        
+{% endif %}
+{%endif%}
+
+                            {% endfor %}
+                        </select></center> 
+                       
+                        <center>   <button type="submit" class="btn hvr-icon-fade col-7 btn-flat ">Affecter</button> </center>
+                      
+                        
+                        </form>
+                    
+
+                    
+{% endif %}
+{% if w.person != Null %}
+
+<form action="{% url 'annuler_affect' w.id %}" method="post" class="d-inline">
+    {% csrf_token %}
+   <center> <button type="submit" class="btn btn-danger btn-flat ">Annuler</button></center>
+</form>
+{% endif %}
+                 
+               
+                
+                <td>
+                   
+                  
+                </td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+</div>
+
+</div>
+<script >
+    $(document).ready(function(){
+     
+      $(function() {
+      $("#cb1").change(function(){
+        a=this.id
+        if (this.checked==true){
+         
+
+          check= 1
+          $.get("{% url 'workspace' %}", { f:check },);
+          alert('Disponible');
+          
+          
+        }
+   
+      
+        
+      });    
+    });
+  });
+  </script>
+{% endblock content %}

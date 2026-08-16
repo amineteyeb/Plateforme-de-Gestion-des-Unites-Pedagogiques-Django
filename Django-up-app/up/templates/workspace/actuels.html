@@ -1,0 +1,56 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<div class="w3-container w3-red">
+    <center>  <h1>Mes Modules {{year}}</h1> </center>
+<div class="table-responsive bs-example widget-shadow">  
+<table class="table table-bordered">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            
+            
+            <td>Module</td>
+            <td>Competence requise</td>
+            <td>Date </td>
+            
+            <td>Charge Horaire</td>
+            <td>Classe</td>
+            
+            
+                <td>
+                   
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for w in workspace %}
+            <tr>
+                <td>{{w.Module.name}}</td>
+                <td>{{w.Module.skillmodule}}</td>
+                <td>{{w.Module.semestre}} période : {{w.Module.periode}}
+                
+                    {%if w.Module.periode == '1' %}
+
+                   <li>de {{w.Module.semestre.date_debut|date:'d-m-Y'}} jusqu'a {{w.Module.semestre.date_inter|date:'d-m-Y'}}</li>
+                      
+                   {%else%}
+                   {%if w.Module.periode == '2' %}
+                   <li>de {{w.Module.semestre.date_inter|date:'d-m-Y'}} jusqu'a {{w.Module.semestre.date_fin|date:'d-m-Y'}}</li>
+                   
+                   
+                   {%endif%}
+                  
+                   {%endif%}
+                   
+               </td>
+                <td>{{w.Module.charge}}</td>
+                <td>{{w.classe.niveau.name}}{{w.classe.option.name}}{{w.classe.name}}</td>
+                </tr>
+                {%endfor%}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock content %}

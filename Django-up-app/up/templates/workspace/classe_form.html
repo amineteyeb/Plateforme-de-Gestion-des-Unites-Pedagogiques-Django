@@ -1,0 +1,39 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+
+
+    <div class="row">
+
+ <div class="col-md-4">
+    <div class="input">
+        <label>Nombre de Classes* : 
+        <input type="number" placeholder="Nombre" name="number" required />
+    </label>
+    </div>
+        </div>    
+        <div class="col-md-4">
+            {{form_class.option|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form_class.niveau|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fa fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'workspace' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fa fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

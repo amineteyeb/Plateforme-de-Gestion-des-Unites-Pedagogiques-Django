@@ -1,0 +1,604 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<title>UP SYSTEM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<!-- Bootstrap Core CSS -->
+<link href="{% static '/css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+
+<!-- Custom CSS -->
+<link href="{% static '/css/style.css' %}" rel='stylesheet' type='text/css' />
+
+<!-- font-awesome icons CSS -->
+<link href="{% static '/css/font-awesome.css' %}" rel="stylesheet"> 
+<!-- //font-awesome icons CSS-->
+
+<!-- side nav css file -->
+<link href="{% static '/css/SidebarNav.min.css' %}" media='all' rel='stylesheet' type='text/css'/>
+<!-- //side nav css file -->
+
+ <!-- js-->
+<script src="{% static '/js/jquery-1.11.1.min.js' %}"></script>
+
+<script src="{% static '/js/modernizr.custom.js' %}"></script>
+
+
+<!--webfonts-->
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+<!--//webfonts--> 
+
+<!-- chart -->
+<script src="{% static '/js/Chart.js' %}"></script>
+<!-- //chart -->
+
+<!-- Metis Menu -->
+<script src="{% static '/js/metisMenu.min.js' %}"></script>
+
+<script src="{% static '/js/custom.js' %}"></script>
+
+<link href="{% static '/css/custom.css' %}" rel="stylesheet">
+
+
+
+	<!-- requried-jsfiles-for owl -->
+					<link href="{% static '/css/owl.carousel.css' %}" rel="stylesheet">
+					<script src="{% static '/js/owl.carousel.js' %}"></script>
+						<script>
+							$(document).ready(function() {
+								$("#owl-demo").owlCarousel({
+									items : 3,
+									lazyLoad : true,
+									autoPlay : true,
+									pagination : true,
+									nav:true,
+								});
+							});
+						</script>
+					<!-- //requried-jsfiles-for owl -->
+</head> 
+<body class="cbp-spmenu-push">
+<script src="{% static '/js/monetization.js' %}" type="text/javascript"></script>
+<script>
+(function(){
+	if(typeof _bsa !== 'undefined' && _bsa) {
+  		// format, zoneKey, segment:value, options
+  		_bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
+  	}
+})();
+</script>
+<script>
+(function(){
+if(typeof _bsa !== 'undefined' && _bsa) {
+	// format, zoneKey, segment:value, options
+	_bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
+}
+})();
+</script>
+<script>
+(function(){
+	if(typeof _bsa !== 'undefined' && _bsa) {
+  		// format, zoneKey, segment:value, options
+  		_bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
+  	}
+})();
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-149859901-1'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-149859901-1');
+</script>
+
+<script>
+     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+     ga('create', 'UA-149859901-1', 'demo.w3layouts.com');
+     ga('require', 'eventTracker');
+     ga('require', 'outboundLinkTracker');
+     ga('require', 'urlChangeTracker');
+     ga('send', 'pageview');
+   </script>
+<script async src="{% static '/js/autotrack.js' %}"></script>
+
+<meta name="robots" content="noindex">
+<body><link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
+<!-- New toolbar-->
+
+<div class="pull-right toggle-right-sidebar">
+<span class="fa title-open-right-sidebar tooltipstered fa-angle-double-right"></span>
+</div>
+
+
+</div>
+
+	<div class="main-content">
+	<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+		<!--left-fixed -navigation-->
+		<aside class="sidebar-left">
+      <nav class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <h1><a class="navbar-brand" {%if request.session.a == 'Coordinateur Up' %} href="{% url 'workspace' %}" {%else%} href="" {%endif%} ><img src="{% static '/images/logo.png' %}" alt=""><span></span></a></h1>
+            
+          </div>
+		  {%if request.session.a == 'Coordinateur Up' %}
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="sidebar-menu">
+              <li class="header">              </li>
+			  <li class="header">              </li>
+              <li class="treeview">
+                <a href="{% url 'workspace' %}">
+                <i class="fa fa-dashboard"></i> <span>Workspace</span>
+                </a>
+              </li>
+			  <li class="treeview">
+                <a href="{% url 'workspace' %}">
+                <i class="fa fa-laptop"></i>
+                <span>Gestion UP</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+				  <li><a href="{% url 'classe_list' %}"><i class="fa fa-angle-right"></i>  Gestion Classes</a></li>
+				  <li><a href="{% url 'liste_niv' %}"><i class="fa fa-angle-right"></i>  Gestion Options et Niveaux</a></li>
+                  <li><a href="{% url 'mod_list' %}"><i class="fa fa-angle-right"></i>  Gestion Modules</a></li>
+                  <li><a href="{% url 'comp_list' %}"><i class="fa fa-angle-right"></i> Gestion Competences</a></li>
+				  <li><a href="{% url 'employee_list' %}"><i class="fa fa-angle-right"></i> Gestion Enseignants</a></li>
+                </ul>
+              </li>
+			  <li class="treeview">
+			  <a href="{% url 'mes_modules' %}">
+                <i class="fa fa-dashboard"></i> <span>Historique Affectations</span>
+                </a>
+			</li>
+			<li class="treeview">
+				<a href="{% url 'actuels' %}">
+				  <i class="fa fa-dashboard"></i> <span>Mes Modules</span>
+				  </a>
+			  </li>
+			<li class="treeview">
+				<a href="{% url 'historique' %}">
+					<i class="fa fa-dashboard"></i> <span>Mon Historique</span>
+					</a></li>
+           
+              
+             
+            </ul>
+          </div>
+		  {%else%}
+
+		  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="sidebar-menu">
+              <li class="header">              </li>
+			  <li class="header">              </li>
+			  <li class="treeview">
+				<a href="{% url 'actuels' %}">
+				  <i class="fa fa-dashboard"></i> <span>Mes Modules</span>
+				  </a>
+			  </li>
+			<li class="treeview">
+				<a href="{% url 'historique' %}">
+					<i class="fa fa-dashboard"></i> <span>Mon Historique</span>
+					</a></li>
+             
+              
+             
+            </ul>
+          </div>
+		  {%endif%}
+          <!-- /.navbar-collapse -->
+      </nav>
+    </aside>
+	</div>
+		<!--left-fixed -navigation-->
+		<style>
+		
+			.pe {
+			 
+			  
+			  position:fixed;
+   top:80px;
+   right:10px;
+			  
+			 
+			 
+			
+			  
+			}
+			.pe  i{
+				position: relative;
+				
+				top:35px;
+   right:20px;
+				color: red;
+				size: 10em;
+			}
+			
+			.pe .selec{
+
+				appearance: none;
+  position:relative;
+  background-color: transparent;
+  border: none;
+  padding: 1 1em 0 0;
+  margin: 0;
+  color: red;
+  width: 100%;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Times, serif, Geneva, Tahoma, sans-serif, Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+  
+  
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+			}
+			.selec::-ms-expand {
+  display: none;
+}
+		.selec .option	{
+			right:50px;		
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    border: none;
+    /* needed for Firefox: */
+    overflow:hidden;
+    width: 100%;
+	text-emphasis-color: red;		
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Times, serif, Geneva, Tahoma, sans-serif, Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+    color: rgb(232, 17, 1);
+    text-align: center;
+    padding: 1.5vw 1vw 2vw;
+    letter-spacing: 0px;
+    
+}
+
+			</style>
+<!---728x90--->
+
+		<!-- header-starts -->
+		<div class="sticky-header header-section ">
+		
+		
+			<div class="header-left">
+				<!--toggle button start-->
+			<br id="1" value="2"> <!--brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr->
+				<!--toggle button end-->
+				<div class="profile_details_left"><!--notifications of menu start -->
+					
+					<ul class="nofitications-dropdown">
+						
+						<button id="showLeftPush" class=""><i class="fa fa-bars"></i></button>
+						<li class="dropdown head-dpdn">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i></a>
+							<ul class="dropdown-menu">
+								<li>
+									<div class="notification_header">
+										<h3>Your Notifications</h3>
+									</div>
+								</li>
+								{%for notif in notif %}
+								<li><a href="#">
+								   <div class="notification_desc">
+									<span>{{notif.notify_detail}}</span>
+									</div>
+								  <div class="clearfix"></div>	
+								 </a></li>
+							
+								 {%endfor%}
+								
+								 <li>
+									<div class="notification_bottom">
+										<a href="#">See all notifications</a>
+									</div> 
+								</li>
+							</ul>
+						</li>	
+							
+					</ul>
+					
+					<div class="clearfix"> </div>
+					
+				</div>
+				
+			
+				<!--notification menu end -->
+				<div class="clearfix"> </div>
+				
+			</div>
+			
+			<div class="header-right">
+				
+				
+				<!--search-box-->
+				
+				
+				<div class="profile_details">		
+					<ul>
+						<li class="dropdown profile_details_drop">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<div class="profile_img">	
+									<span class="prfil-img"><img src="{% static '/images/2.jpg' %}" alt=""> </span> 
+									<div class="user-name">
+										<p>{{request.session.name}}</p>
+										<span>{{request.session.a}}</span>
+									</div>
+									<i class="fa fa-angle-down lnr"></i>
+									<i class="fa fa-angle-up lnr"></i>
+									<div class="clearfix"></div>	
+								</div>	
+							</a>
+							<ul class="dropdown-menu drp-mnu">
+								
+								<li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log-out</a> </li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>	
+							
+			</div>
+			<div class="clearfix"> </div>	
+			
+		</div>
+		<script type="text/javascript">
+			function foo() {
+				// function body here
+				// for example
+				d = document.getElementById("sources").value;
+				
+			
+        $.ajax({
+            type: 'GET',
+            url:'/workspace/',
+            data: {"year": d},
+            success: function(response){
+                $("#year").attr("placeholder",d);
+                
+                window.location.replace("http://localhost:8000/workspace?year="+d+"")
+                
+                
+
+                
+            }
+        })
+			}
+			</script>
+		<script type="text/javascript">
+
+			function boo() {
+				// function body here
+				// for example
+				d = "{{request.session.current_year}}";
+				
+			
+        $.ajax({
+            type: 'GET',
+            url:'/workspace/',
+            data: {"year": d},
+            success: function(response){
+                $("#year").attr("placeholder",d);
+                
+                window.location.replace(window.location.pathname+"?year="+d+"")
+                
+                
+
+                
+            }
+        })
+			}
+			</script>
+		
+		<!-- //header-ends -->
+<!---728x90--->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			
+			<div class="pe">
+				<i {% if request.session.year == request.session.current_year %}
+				class="fa fa-calendar-check-o" {%else%} class="fa fa-calendar-times-o" onclick="boo()" {%endif%} aria-hidden="true"{% if request.session.year == request.session.current_year %} style="color:green;"{% endif %}></i>
+				<select onchange="foo()" name="year_list" id="sources" class="selec" placeholder="Source Type"{% if request.session.year == request.session.current_year %} style="color:green;"{% endif %}> 
+					{%for year in years%}
+	
+					<option value="{{year.id}}" {% if year.id == request.session.year %}selected="selected"{% endif %} {% if request.session.year == request.session.current_year %} style="color:green;"{% endif %}>{{year}} </option> 
+					{%endfor%}
+				  </select>
+				
+				  
+		
+				   
+			   </div>
+		   
+          	
+            {% block content %}
+			
+            {% endblock content %}
+			
+			<div class="icon-box col-md-3 col-sm-4" id="chat_box" onclick="openForm()"><a class="agile-icon" href="#"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i> Chat</a></div>
+			<div class="col-md-4 span_8" id="chat" style="display:none">
+			<div class="activity_box activity_box1">
+				<h3>chat                              <i class="fa fa-minus" onclick="closeForm()" style="right:15px; position: absolute;" ></i></h3>
+				<div class="scrollbar" id="style-3">
+					{%for m in message%}
+					<div class="activity-row activity-row1" id="chat_message">
+						<div class="col-xs-3 activity-img"><img src="{% static '/images/user.png' %}" alt=""><span>{{m.date}}</span></div>
+						<div class="col-xs-5 activity-img1">
+							<div class="activity-desc-sub">
+								<b>{{m.user.fullname}}</b>
+								<h5>{{m.message}}</h5>
+							</div>
+						</div>
+						
+						<div class="clearfix"> </div>
+					</div>
+					{%endfor%}
+					
+				</div>
+				<form action="#" method="post">
+					<input type="text" id="message" value="Enter your text" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your text';}" required="">
+					<input type="submit" id="send" value="Envoyer">		
+				</form>
+			</div>
+</div>
+		</div>
+		{% block script %}
+		{{ request.session.up|json_script:"json-roomname" }}
+        {{ request.session.name|json_script:"json-username" }}
+		<script>
+
+			const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+			const userName = JSON.parse(document.getElementById('json-username').textContent);
+			const chatSocket = new WebSocket(
+				'ws://'
+				+ window.location.host
+				+ '/ws/'
+				+ roomName
+				+ '/'
+			);
+		
+			chatSocket.onclose = function(e) {
+				console.log('onclose')
+			}
+		
+			chatSocket.onmessage = function(e) {
+				const data = JSON.parse(e.data);
+		
+				if (data.message) {
+					document.querySelector('#style-3').innerHTML += ('<div class="activity-row activity-row1" id="chat_message"><div class="col-xs-3 activity-img"><img src="{% static '+/images/user.png+' %}" alt=""><span>{{m.date}}</span></div><div class="col-xs-5 activity-img1"><div class="activity-desc-sub"><b>'+data.username+'</b><h5>'+data.message+'</h5></div></div><div class="clearfix"> </div></div>');
+
+
+					
+				} else {
+					alert('The message was empty!')
+				}
+		
+				scrollToBottom();
+			};
+		
+			
+		
+			document.querySelector('#send').onclick = function(e) {
+				e.preventDefault()
+		
+				const messageInputDom = document.querySelector('#message');
+				const message = messageInputDom.value;
+		
+				console.log({
+					'message': message,
+					'username': userName,
+					'room': roomName
+				})
+		
+				chatSocket.send(JSON.stringify({
+					'message': message,
+					'username': userName,
+					'room': roomName
+				}));
+		
+				messageInputDom.value = '';
+		
+				return false
+			};
+		
+			/**
+			* A function for finding the messages element, and scroll to the bottom of it.
+			*/
+			function scrollToBottom() {
+				let objDiv = document.getElementById("style-3");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			}
+		
+			// Add this below the function to trigger the scroll on load.
+			scrollToBottom();
+		</script>
+		
+            {% endblock script %}
+	<!--footer-->
+	<div class="footer">
+	   <p>&copy; UP SYSTEM 2022 <a target="_blank"></a></p>		
+	</div>
+    <!--//footer-->
+	</div>
+	<!-- new added graphs chart js-->
+	
+    
+	<!-- new added graphs chart js-->
+	
+	<!-- Classie --><!-- for toggle left push menu script -->
+		<script src="{% static '/js/classie.js' %}"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!-- //Classie --><!-- //for toggle left push menu script -->
+		
+	<!--scrolling js-->
+	<script src="{% static '/js/jquery.nicescroll.js' %}"></script>
+	<script src="{% static '/js/scripts.js' %}"></script>
+	<!--//scrolling js-->
+	
+	<!-- side nav js -->
+	<script src="{% static '/js/SidebarNav.min.js' %}" type='text/javascript'></script>
+
+	<script>
+      $('.sidebar-menu').SidebarNav()
+    </script>
+	<!-- //side nav js -->
+	
+	<!-- for index page weekly sales java script -->
+	
+	<!-- //for index page weekly sales java script -->
+	
+	<!-- Bootstrap Core JavaScript -->
+   <script src="{% static '/js/bootstrap.js' %}">
+    </script>
+
+	<!-- //Bootstrap Core JavaScript -->
+<script>
+
+function openForm() {
+  document.getElementById("chat").style.display = "block";
+  document.getElementById("chat_box").style.display = "none";
+}
+
+function closeForm() {
+  document.getElementById("chat").style.display = "none";
+  document.getElementById("chat_box").style.display = "block";
+}
+</script>
+<script>$(document).ready(function() {
+    $("#chat").hide();
+});</script>
+	</body>
+
+<!-- Mirrored from demo.w3layouts.com/demos_new/template_demo/06-01-2018/glance_design_dashboard-demo_Free/215073379/web/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 24 Jul 2022 09:36:14 GMT -->
+</html>

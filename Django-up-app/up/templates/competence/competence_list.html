@@ -1,0 +1,42 @@
+{% extends "employee_register/index.html" %}
+
+{% load static %}
+{% block content %}
+<div class="w3-container w3-red">
+    <center>  <h1>  Competences/Skills</h1> </center>
+<div class="table-responsive bs-example widget-shadow">  
+    <a href="{% url 'comp_insert' %}" class="btn btn-outline-success">
+        <i class="fa fa-plus"></i> Ajouter Competence
+    </a>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Competence</td>
+            
+            <td>
+               Action
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comp in comp_list %}
+            <tr>
+                <td>{{comp.title}}</td>
+               
+                <td>
+                    <a href="{% url 'comp_update' comp.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-edit fa-lg"></i>
+                    </a>
+                    
+                    <a href="{% url 'comp_delete' comp.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-trash text-danger fa-lg"></i>
+                    </a>
+    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock content %}

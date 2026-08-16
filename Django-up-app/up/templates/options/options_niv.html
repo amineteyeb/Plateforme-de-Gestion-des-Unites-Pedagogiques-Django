@@ -1,0 +1,74 @@
+{% extends "employee_register/index.html" %}
+
+{% load static %}
+{% block content %}
+<div class="w3-container w3-red">
+    <center>  <h1> Options</h1> </center>
+<div class="table-responsive bs-example widget-shadow">  
+    <a href="{% url 'option_insert' %}" class="btn btn-outline-success">
+        <i class="fa fa-plus"></i> Ajouter Option
+    </a>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Options</td>
+            
+            <td>
+               Action
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for opt in opt_list %}
+            <tr>
+                <td>{{opt.name}}</td>
+              
+                <td>
+                   
+                    
+                    <a href="{% url 'option_delete' opt.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-trash text-danger fa-lg"></i>
+                    </a>
+    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<br>
+<br>
+<center>  <h1>  Niveaux</h1> </center>
+<div class="table-responsive bs-example widget-shadow">  
+    <a href="{% url 'niveau_insert' %}" class="btn btn-outline-success">
+        <i class="fa fa-plus"></i> Ajouter Niveau
+    </a>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Niveaux</td>
+            
+            <td>
+               Action
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for niv in niv_list %}
+            <tr>
+                <td>{{niv.name}}</td>
+               
+                <td>
+                   
+                    <a href="{% url 'niveau_delete' niv.id %}" class="btn text-secondary px-0">
+                        <i class="fa fa-trash text-danger fa-lg"></i>
+                    </a>
+    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock content %}

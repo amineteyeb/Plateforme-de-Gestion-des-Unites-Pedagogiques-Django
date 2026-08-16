@@ -1,0 +1,115 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+<div class="w3-container w3-red">
+    <center>  <h1> Historique des Affectations</h1> </center>   
+   
+<style>
+    h3{
+        font-size:2.47vw;
+    color: rgb(142, 127, 126);
+    text-align: center;
+    padding: 1.5vw 1vw 2vw;
+    letter-spacing: 0px;
+    }
+</style>
+ 
+   {% for y in years %}
+   
+   <center>  <h3>-------------------------------{{y.sem1_year}}/{{y.sem2_year}}-------------------------------</h3> </center> 
+   
+    {%for w in workspace %}
+    {%if y == w.annee_univ%}
+
+<table class="table table-bordered">
+   
+<div class="table-responsive bs-example widget-shadow">  
+    
+    <thead class="border-bottom font-weight-bold">
+        
+        <tr>
+            
+            
+            <td>Module</td>
+            <td>Enseignant</td>
+            <td>Competence requise</td>
+            <td>Date</td>
+           
+            <td>Charge Horaire</td>
+            <td>Classe</td>
+            
+            
+                <td>
+                   
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+      
+       
+            <tr>
+                
+                 
+              
+              
+                   
+               
+    
+             
+              
+               
+
+                <td>{{w.Module.name}}</td>
+                <td>{{w.person.fullname}}</td>
+                <td>{{w.Module.skillmodule}}</td>
+                <td>{{w.Module.semestre}} période : {{w.Module.periode}}
+                
+                    {%if w.Module.periode == '1' %}
+
+                   <li>de {{w.Module.semestre.date_debut|date:'d/m'}} jusqu'a {{w.Module.semestre.date_inter|date:'d/m'}}</li>
+                      
+                   {%else%}
+                   {%if w.Module.periode == '2' %}
+                   <li>de {{w.Module.semestre.date_inter|date:'d/m'}} jusqu'a {{w.Module.semestre.date_fin|date:'d/m'}}</li>
+                   
+                   
+                   {%endif%}
+                  
+                   {%endif%}
+                   
+               </td>
+                
+                <td>{{w.Module.charge}}</td>
+                <td>{{w.classe.niveau.name}}{{w.classe.option.name}}{{w.classe.name}}</td>
+                </tr> 
+             
+            
+              
+            
+                              
+               
+              
+                
+               
+    </tbody>
+  
+
+ 
+    
+</table>
+
+
+
+
+{%endif%}
+{% endfor %}
+{% endfor %}
+
+
+
+
+</div>
+
+{% endblock content %}

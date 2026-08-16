@@ -1,0 +1,25 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    
+    
+    
+    <div class="row">
+        <div class="col-md-4">
+            {% csrf_token %}
+    {{form_option.name|as_crispy_field}}
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fa fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'liste_niv' %}" class="btn btn-secondary">
+                <i class="fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

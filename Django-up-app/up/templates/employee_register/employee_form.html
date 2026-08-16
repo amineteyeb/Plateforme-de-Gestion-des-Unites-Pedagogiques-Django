@@ -1,0 +1,103 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<script>
+$(document).ready(function() {
+    $("#mainselect").change(function() {
+        var val = $(this).val();
+        if (val === "3") {
+            $("#responsable").hide();
+            $("#enseignant").hide();
+        }
+        else{
+        if (val === "1") {
+            $("#responsable").hide();
+            $("#enseignant").show();
+        } else {
+            $("#responsable").show();
+            $("#enseignant").hide();
+        }
+    }
+    });
+   $("#mainselect").trigger('change');
+});
+</script>
+<style>
+    select {
+      position: relative;
+      display: flex;
+      width: 200px;
+      height: 30px;
+      border-radius: .25em;
+      overflow: hidden;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      text-align-last:center;
+    }
+    /* Arrow */
+    select::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1em;
+      background-color: #34495e;
+      transition: .25s all ease;
+      pointer-events: none;
+      text-align-last:center;
+    }
+    /* Transition */
+    select:hover::after {
+      color: #f39c12;
+    }
+    
+   
+
+    </style>
+<form action="" method="post" autocomplete="off">{% csrf_token %}
+    
+    <div class="row">
+        <div class="col-md-4">
+            {{form.fullname|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.mobile|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.email|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.cin|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.emp_code|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form.position|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            <b>Role: *</b> <select id="mainselect" name="mainselect" class="select" ><option  value="3">---Select----</option><option value="1">Enseignant</option><option value="2">Responsable</option></select>
+        </div>
+        <div class="col-md-4" id="responsable">
+         {{form.type_r|as_crispy_field}}
+        </div>
+        <div class="col-md-4" id="enseignant">
+        {{form.type_e|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fa fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

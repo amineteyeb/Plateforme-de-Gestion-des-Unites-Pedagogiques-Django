@@ -1,0 +1,45 @@
+{% extends "employee_register/index.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+  
+    <div class="row">
+        <div class="col-md-4">
+            {{form_mod.name|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form_mod.semestre|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form_mod.periode|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form_mod.charge|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form_mod.skillmodule|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form_mod.option|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+            {{form_mod.niveau|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fa fa-database"></i>
+                Submit</button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'employee_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fa fa-stream"></i> Back to list
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}
